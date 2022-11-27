@@ -1,5 +1,4 @@
 import java.io.FileReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,17 +23,13 @@ public class Main {
                 }
             }
         }
-
         System.out.println(ipCorrect);
         FileReader fileReader = new FileReader("D://Task.txt");
         StringBuilder builder = new StringBuilder();
-        int c = true;
-
         int c;
         while ((c = fileReader.read()) != -1) {
             builder.append((char) c);
         }
-
         fileReader.close();
         String text = builder.toString();
         Pattern patternNumberOfDoc = Pattern.compile("([0-9]{4}-){2}[0-9]{2}");
@@ -44,15 +39,12 @@ public class Main {
         Matcher matcherTelephone = patternTelephone.matcher(text);
         Matcher matcherEmail = patternEmail.matcher(text);
         Map<String, String> dBase = new HashMap();
-
         for (int n = 1; matcherNumberOfDoc.find(); ++n) {
             dBase.put("document number" + n, matcherNumberOfDoc.group());
         }
-
         for (int a = 1; matcherTelephone.find(); ++a) {
             dBase.put("phone number" + a, matcherTelephone.group());
         }
-
         for (int b = 1; matcherEmail.find(); ++b) {
             dBase.put("email" + b, matcherEmail.group());
         }
